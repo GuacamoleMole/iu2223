@@ -49,6 +49,9 @@ function update() {
         // añade ordenación
         E.bindSortColumn("tr>th");
 
+        //Advance search 
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle", "#search-in-users-input", "#filter-in-users");
+
     } catch (e) {
         console.log('Error actualizando', e);
     }

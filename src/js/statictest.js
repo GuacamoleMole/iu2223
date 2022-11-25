@@ -31,17 +31,10 @@ E.bindSearch("#search-in-teachers-input", ".teacher-table-row");
 E.bindSearch("#search-in-students-input", ".student-table-row");
 E.bindSearch("#search-in-user-editions-input", ".user-edition-table-row");
 
-// filtrado ejercicio 3
-E.bindSearch("#search-in-users-email", ".user-table-row"); //filtrado por correo
-E.bindSearch("#search-in-users-dni", ".user-table-row"); //filtrado por DNI
-E.bindSearch("#search-in-users-input2", ".user-table-row");
-E.bindSearch("#search-in-users-role", ".user-table-row");
-
-
 // añade ordenación
 E.bindSortColumn("tr>th");
 
-E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle", "#search-in-users-input", "#filter-in-users")
+E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle", "#search-in-users-input", "#filter-in-users");
 
 // cosas que exponemos para poder usarlas desde la consola
 window.Cm = Cm;

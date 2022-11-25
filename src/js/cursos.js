@@ -86,9 +86,15 @@ function update() {
         E.bindSearch("#search-in-teachers-input", ".teacher-table-row");
         E.bindSearch("#search-in-students-input", ".student-table-row");
         E.bindSearch("#search-in-user-editions-input", ".user-edition-table-row");
-
         E.bindSortColumn("tr>th");
+        
+        document.querySelectorAll("#filter-in-users input, #filter-in-users select").forEach(o =>
+            o.addEventListener('input', e => {
+                console.log("filtrando");
+                E.advancedUserFilter("#filter-in-users", ".user-table-row");
+            }));
 
+        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle", "#search-in-users-input", "#filter-in-users");
     } catch (e) {
         console.log('Error actualizando', e);
     }
