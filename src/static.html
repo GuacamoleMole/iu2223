@@ -68,18 +68,18 @@
                 <div id="filter-in-users" class="m-2 p-2 border border-2 rounded">
                     <div class="row">
                         <div class="col-8">
-                            <input type="search" name="name" class="m-1 form-control form-control-sm" name="" placeholder="Nombre o fragmento">
+                            <input id="search-in-users-input2" type="search" name="name" class="m-1 form-control form-control-sm" name="" placeholder="Nombre o fragmento">
                         </div>
                         <div class="col-4">
-                            <input type="search" name="dni" class="m-1 form-control form-control-sm" placeholder="DNI o fragmento">    
+                            <input id="search-in-users-dni" type="search" name="dni" class="m-1 form-control form-control-sm" placeholder="DNI o fragmento">    
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
-                            <input type="search" name="email" class="m-1 form-control form-control-sm" placeholder="correo o fragmento">
+                            <input id ="search-in-users-email" type="search" name="email" class="m-1 form-control form-control-sm" placeholder="correo o fragmento">
                         </div>
                         <div class="col-6">
-                            <select name="rol" class="m-1 form-select form-select-sm">
+                            <select id ="search-in-users-role" name="rol" class="m-1 form-select form-select-sm">
                                 <option value="admin">admin</option>
                                 <option value="alumno" selected>alumno</option>
                                 <option value="profesor">profesor</option>
@@ -1748,10 +1748,7 @@
     <!-- Todos los scripts de interaccion, aqui -->
     <script src="js/statictest.js" type="module"></script>
 
-    <script>
-
-        E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle", "#search-in-users-input", "#filter-in-users")
-    </script>
+   
 </body>
 
 </html>
