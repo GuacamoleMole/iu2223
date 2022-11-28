@@ -22,7 +22,7 @@ import * as U from './util.js'
  * @Author manuel.freire@fdi.ucm.es
  */
 
-// Algunos emoticonos que puede resultar útiles: 🔍 ✏️ 🗑️ ➕ 🧑‍🏫 🧑‍🔧 👥 🎓
+// Algunos emoticonos que puede resultar útiles: 🔍 ✏️ 🗑️ ➕ 🧑‍🏫 🧑‍🔧 👥 🎓 ❌
 
 //
 // Función que refresca toda la interfaz. Debería llamarse tras cada operación
