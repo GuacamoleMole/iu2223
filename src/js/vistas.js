@@ -43,6 +43,7 @@ function userRow(user, editions) {
     const docencia = editions.filter(o => o.teachers.indexOf(user.id) != -1)
     return `
     <tr data-id="${user.id}" class="user-table-row">
+        <td><input type="checkbox" value="${user.id}" name="users"/></td>
         <td>${user.name}</td>
         <td><span class="${roleClasses[user.role]}">${user.role}</span></td>
         <td>${user.email}</td>
@@ -66,11 +67,18 @@ export function createUserTable(users) {
     const editions = Cm.getEditions();
     const filas = users.map(o => userRow(o, editions)).join('');
 
+    const botonBorrarSeleccionado = `
+    <button title="Borrar los seleccionados" 
+        class="rm-all-selected btn btn-outline-danger">Eliminar Seleccionados 🗑️</button>`
+ 
+
     const botonNuevoUsuario = `
         <button title="Crea un nuevo usuario" 
             class="add-user btn btn-outline-primary">➕</button>`
 
     return `
+
+    
     <h4 class="mt-3">Usuarios</h4>
 
     <div class="row">
@@ -79,9 +87,11 @@ export function createUserTable(users) {
             <span class="input-group-text" id="search-in-users-button">🔍</span>
         </div>
         <div class="col">
-            <button id="search-advanced-toggle" title="Búsqueda avanzada" class="btn btn-outline-secondary">🔍🔍</button>
+            <button id="search-advanced-toggle" title="Búsqueda avanzada" class="btn btn-outline-secondary">🔍Búsqueda Avanzada🔍</button>
         </div>
         <div class="col text-end">${botonNuevoUsuario}</div>
+        <div class="col text-end">${botonBorrarSeleccionado}</div>
+
     </div>
     <div id="filter-in-users" class="m-2 p-2 border border-2 rounded">
         <div class="row">
@@ -108,6 +118,7 @@ export function createUserTable(users) {
     </div>
     <table class="table">
     <tr>
+        <th><input type="checkbox" name="toggle"/></td>
         <th>Nombre</th>
         <th>Rol</th>
         <th>Correo</th>

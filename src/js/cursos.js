@@ -22,7 +22,7 @@ import * as U from './util.js'
  * @Author manuel.freire@fdi.ucm.es
  */
 
-// Algunos emoticonos que puede resultar útiles: 🔍 ✏️ 🗑️ ➕ 🧑‍🏫 🧑‍🔧 👥 🎓 ❌
+// Algunos emoticonos que puede resultar útiles: 🔍 ✏️ 🗑️ ➕ 🧑‍🏫 🧑‍🔧 👥 🎓
 
 //
 // Función que refresca toda la interfaz. Debería llamarse tras cada operación
@@ -41,6 +41,7 @@ function update() {
 
         E.bindRmCourseRow("#courses button.rm-fila")
         E.bindRmUserRow("#users button.rm-fila")
+        
 
         E.bindAddEditionToCourse(".add-edition", () => update())
 
@@ -86,8 +87,13 @@ function update() {
         E.bindSearch("#search-in-teachers-input", ".teacher-table-row");
         E.bindSearch("#search-in-students-input", ".student-table-row");
         E.bindSearch("#search-in-user-editions-input", ".user-edition-table-row");
+
         E.bindSortColumn("tr>th");
-        
+
+        E.bindCheckboxColumn("#users", "prueba");
+        E.bindRmUserRowall("#users button.rm-all-selected", "prueba");
+
+
         document.querySelectorAll("#filter-in-users input, #filter-in-users select").forEach(o =>
             o.addEventListener('input', e => {
                 console.log("filtrando");
@@ -99,6 +105,15 @@ function update() {
         console.log('Error actualizando', e);
     }
 }
+
+// asociamos botones de prueba para guardar y restaurar estado
+U.one("#save").addEventListener('click', () => Cm.saveState());
+U.one("#clean").addEventListener('click', () => localStorage.clear());
+U.one("#restore").addEventListener('click', () => {
+    Cm.restoreState();
+    Cm.saveState();
+    update()
+});
 
 //
 // Código que se ejecuta al lanzar la aplicación. 
