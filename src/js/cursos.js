@@ -90,8 +90,8 @@ function update() {
 
         E.bindSortColumn("tr>th");
 
-        E.bindCheckboxColumn("#users", "prueba");
-        E.bindRmUserRowall("#users button.rm-all-selected", "prueba");
+        E.bindCheckboxColumn("#users","prueba");
+        E.bindRmUserRowall("#users button.rm-all-selected", "#users");
 
 
         document.querySelectorAll("#filter-in-users input, #filter-in-users select").forEach(o =>

@@ -90,22 +90,6 @@ export function bindRmUserRow(clickSelector) {
     }));
 }
 
-
-export function bindRmUserRowall(clickSelector, evtName) {
-    U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
-        const row = e.target.closest("tr");
-        const id = row.dataset.id;
-        console.log(e, id);
-        
-        var confirmation = confirm("¿Estás seguro que quieres borrar este usuario?")
-        if (confirmation){
-            Cm.rmUser(id);
-            row.remove();
-        }
-    }));
-}
-
-
 export function bindAddUserToEdition(clickSelector, formTitleSelector, formSelector, formAcceptSelector,
     modalFn, formTitleFn, formContentsFn, callback) {
 
@@ -394,6 +378,26 @@ export function bindCheckboxColumn(selTabla, evtName) {
 
     // EJEMPLO DE CAPTURA DE EVENTO DE CAMBIO DE SELECCION - usalo en tu código
     if (evtName) table.addEventListener(evtName, e => console.log(e.detail));
+}
+
+export function bindRmUserRowall(clickSelector,selTabla) {
+    U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
+        const table = U.one(selTabla);
+        const toggle = table.querySelector("input[name=toggle]");
+        const rows = table.querySelectorAll('tr:nth-child(n+2)');
+
+        const visibleRows = [...rows].filter(r => r.style.display != 'none');
+        const checkedRows = visibleRows
+            .map(o => o.querySelector('input[type=checkbox]'))
+            .filter(r => r.checked);
+        
+        checkedRows.forEach(r => {
+            const row = r.parentElement.parentElement; // consegumos el tr, y borramos
+            const id = row.dataset.id;
+            Cm.rmCourse(id);
+            row.remove();
+        })
+    }));
 }
 
 export function advancedUserFilter(filterSel, rowSel) {
