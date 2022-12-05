@@ -168,6 +168,52 @@ export function bindAddOrEditUser(clickSelector, formTitleSelector, formSelector
     }));
 };
 
+//No funciona bien
+export function bindMatriculateSelected(clickSelector,selTabla, formTitleSelector, formSelector, formAcceptSelector,
+    modalFn, formTitleFn, formContentsFn, callback,) {
+
+    U.all(clickSelector).forEach(o => o.addEventListener('click', e => {
+        
+        const table = U.one(selTabla);
+        const rows = table.querySelectorAll('tr:nth-child(n+2)');
+
+        const visibleRows = [...rows].filter(r => r.style.display != 'none');
+        const checkedRows = visibleRows
+            .map(o => o.querySelector('input[type=checkbox]'))
+            .filter(r => r.checked);
+
+        modalFn().show();
+        const form = U.one(formSelector);
+        form.innerHTML = formContentsFn();
+        const acceptButton = U.one(formAcceptSelector);
+        const acceptListener = ae => {
+            const editionInput = form.querySelector("select[name=dni]");
+            console.log(editionInput, editionInput.value);
+            const id = editionInput.value;
+            const candidates = Cm.getEditions({id});
+            if (candidates.length == 1) {
+                checkedRows.forEach(r => {
+                    const row = r.parentElement.parentElement; 
+                    const person = row.dataset.id;
+                    console.log(person.role);
+                    person.role == Cm.UserRole.STUDENT ?
+                    candidates.students.push(person) :
+                    candidates.teachers.push(person);
+                    Cm.setEdition(candidates);
+                })
+                modalFn().hide();
+                acceptButton.removeEventListener('click', acceptListener);
+            } else {
+                // show errors by clicking hidden submit button only if there *are* errors
+                editionInput.setCustomValidity("No existe esa edition");
+                form.querySelector("button[type=submit]").click()
+            }
+        }
+
+        acceptButton.addEventListener('click', acceptListener);
+    }));
+};
+
 export function bindAddOrEditCourse(clickSelector, formTitleSelector, formSelector, formAcceptSelector,
     modalFn, formTitleFn, formContentsFn, callback) {
 

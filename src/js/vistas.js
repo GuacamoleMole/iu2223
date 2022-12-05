@@ -70,8 +70,10 @@ export function createUserTable(users) {
     const botonBorrarSeleccionado = `
     <button title="Borrar los seleccionados" 
         class="rm-all-selected btn btn-outline-danger">Eliminar Seleccionados 🗑️</button>`
- 
-
+    const botonMatricularSeleccionado = `
+    <button title="Borrar los seleccionados" 
+        class="add-all-selected btn btn-outline-secondary">Matricular Seleccionados🎓</button>`
+     
     const botonNuevoUsuario = `
         <button title="Crea un nuevo usuario" 
             class="add-user btn btn-outline-primary">➕</button>`
@@ -90,6 +92,7 @@ export function createUserTable(users) {
             <button id="search-advanced-toggle" title="Búsqueda avanzada" class="btn btn-outline-secondary">🔍Búsqueda Avanzada🔍</button>
         </div>
         <div class="col text-end">${botonNuevoUsuario}</div>
+        <div class="col text-end">${botonMatricularSeleccionado}</div>
         <div class="col text-end">${botonBorrarSeleccionado}</div>
 
     </div>
@@ -380,6 +383,21 @@ export function prepareAddUserToEditionModal(edition, role) {
     let bad = [...edition.teachers, ...edition.students];
     let candidates = Cm.getUsers({ role }).filter(o => bad.indexOf(o.id) == -1);
     let options = candidates.map(o => `<option value="${o.dni}">${o.name} (${o.dni})</option>`).join();
+    return `
+    <form class="row">
+        <div class="col-md-auto">
+            <select class="form-select" name="dni" required>
+                ${options}
+            </select>
+        </div>
+        <button style="display: none" type="submit">Invisible, sólo para validación</button>
+    </form>
+    `;
+}
+
+export function prepareMatriculateSelected(edition) {
+    let candidates = Cm.getEditions({edition})
+    let options = candidates.map(o => `<option value="${o.dni}">${o.name}</option>`).join();
     return `
     <form class="row">
         <div class="col-md-auto">

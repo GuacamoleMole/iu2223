@@ -76,10 +76,11 @@ function update() {
             (user) => user ? `Editando <i>${user.name}</i>` : "Añadiendo usuario",
             (user) => V.prepareAddOrEditUserModal(user),
             () => update());
-        E.bindAddOrEditCourse(".add-course,.set-course",
+        
+        E.bindMatriculateSelected(".add-all-selected","#users",
             "#cmModal .modal-title", "#cmEditForm", "#cmAcceptModal", () => modalEdit,
-            (course) => course ? `Editando <i>${course.name}</i>` : "Añadiendo curso",
-            (course) => V.prepareAddOrEditCourseModal(course),
+            "Matriculando",
+            (course) => V.prepareMatriculateSelected(course),
             () => update());
 
         E.bindSearch("#search-in-users-input", ".user-table-row");
