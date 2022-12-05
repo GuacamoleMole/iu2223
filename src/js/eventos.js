@@ -437,12 +437,15 @@ export function bindRmUserRowall(clickSelector,selTabla) {
             .map(o => o.querySelector('input[type=checkbox]'))
             .filter(r => r.checked);
         
-        checkedRows.forEach(r => {
-            const row = r.parentElement.parentElement; // consegumos el tr, y borramos
-            const id = row.dataset.id;
-            Cm.rmCourse(id);
-            row.remove();
-        })
+        var confirmation = confirm("¿Estás seguro que quieres borrar este curso?")
+        if (confirmation){    
+            checkedRows.forEach(r => {
+                const row = r.parentElement.parentElement; // consegumos el tr, y borramos
+                const id = row.dataset.id;
+                Cm.rmCourse(id);
+                row.remove();
+            })
+        }
     }));
 }
 
