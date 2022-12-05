@@ -112,7 +112,8 @@ U.one("#save").addEventListener('click', () => Cm.saveState());
 U.one("#clean").addEventListener('click', () => localStorage.clear());
 U.one("#restore").addEventListener('click', () => {
     Cm.restoreState();
-    Cm.saveState();
+    //Si se guarda un save state al final ya no es un deshacer ilimitado
+    //Cm.saveState();
     update()
 });
 
