@@ -395,13 +395,13 @@ export function prepareAddUserToEditionModal(edition, role) {
     `;
 }
 
-export function prepareMatriculateSelected(edition) {
-    let candidates = Cm.getEditions({edition})
-    let options = candidates.map(o => `<option value="${o.dni}">${o.name}</option>`).join();
+export function prepareMatriculateSelected() {
+    let candidates = Cm.getEditions()
+    let options = candidates.map(o => `<option value="${o.id}">${o.name}</option>`).join();
     return `
     <form class="row">
         <div class="col-md-auto">
-            <select class="form-select" name="dni" required>
+            <select class="form-select" name="edition" required>
                 ${options}
             </select>
         </div>
