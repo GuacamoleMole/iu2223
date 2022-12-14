@@ -453,14 +453,12 @@ export function advancedUserFilter(filterSel, rowSel) {
     const dni = filterDiv.querySelector("input[name=dni]").value.toLowerCase();
     const email = filterDiv.querySelector("input[name=email]").value.toLowerCase();
     const role = filterDiv.querySelector("select[name=role]").value.toLowerCase();
-    
     const valueAt = (row, i) => row.children[i].innerText || row.children[i].textContent;
-    
     for (let r of document.querySelectorAll(rowSel)) {
         let ok = true;
         for (let [f, col] of 
-            [[name, 0], [role, 1], [email, 2], [dni, 3]]) {
-                if (f == '' || ! ok) continue;
+            [[name, 1], [role, 2], [email, 3], [dni, 4]]) {
+                if (f === '' || !ok) continue;
                 const v = valueAt(r, col).toLowerCase();
                 console.log(v, f, col, v.indexOf(f));
                 if (v.indexOf(f) == -1) ok = false;

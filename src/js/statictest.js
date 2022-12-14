@@ -33,13 +33,6 @@ E.bindSearch("#search-in-user-editions-input", ".user-edition-table-row");
 
 // añade ordenación
 E.bindSortColumn("tr>th");
-
-document.querySelectorAll("#filter-in-users input, #filter-in-users select").forEach(o =>
-    o.addEventListener('input', e => {
-        console.log("filtrando");
-        E.advancedUserFilter("#filter-in-users", ".user-table-row");
-    }));
-
 E.alternaBusquedaAvanzadaUsuarios("#search-advanced-toggle", "#search-in-users-input", "#filter-in-users");
 
 // cosas que exponemos para poder usarlas desde la consola
